@@ -1,16 +1,26 @@
 #python8
-HackerRank link:https://www.hackerrank.com/challenges/list-comprehensions/problem
-x = int(input())
-y = int(input())
-z = int(input())
+HackerRank link:https://www.hackerrank.com/challenges/python-tuples/problem
+
 n = int(input())
+t = tuple(map(int, input().split()))
 
-result = [
-    [i, j, k]
-    for i in range(x + 1)
-    for j in range(y + 1)
-    for k in range(z + 1)
-    if i + j + k != n
-]
+x = 0x345678
+mult = 1000003
+length = len(t)
 
-print(result)
+for item in t:
+    x = (x ^ hash(item)) * mult
+    length -= 1
+    mult += 82520 + length + length
+
+x += 97531
+
+# Convert to a signed 64-bit integer
+x &= (1 << 64) - 1
+if x >= (1 << 63):
+    x -= (1 << 64)
+
+if x == -1:
+    x = -2
+
+print(x)
